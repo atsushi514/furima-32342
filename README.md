@@ -3,8 +3,7 @@
 |  Column           | Type          | Options        |
 | ----------------- | -----------   | -------------- |
 |nickname	          | string	      | null: false    |
-|email	            | string	      | null: false, foreign_key: true    |
-|password           |	string	      | null: false    |
+|email	            | string	      | null: false, unique: true   |
 |encrypted_password | string        | null: false    |
 |family_name	      | string	      | null: false    |
 |first_name	        | string	      | null: false    |
@@ -15,11 +14,9 @@
 ### Association
 - has_many   : products
 - has_many   : comments
-- belongs_to : customer
-- belongs_to : card
 - belongs_to : purchases
 
-## addressテーブル
+## addressesテーブル
 
 |  Column           | Type        | Options                        |
 | ----------------- | ----------- |  --------------                |
@@ -29,6 +26,7 @@
 | address           |	string	    | null: false                    |
 | building_name     |	string	    |                    |
 | phone_number	    | string      | null: false                    |
+| post_number       | string      | null: false
 
 ### Association
 - belongs_to : purchase
@@ -45,47 +43,28 @@
 - belongs_to : product
 
 
-## categoryテーブル
 
-|  Column           | Type        | Options        |
-| ----------------- | ----------- | -------------- |
-| name	            | string	    | null: false    |
-| ancestry	        | string	    |                |
+## productsテーブル
 
-### Association
-- has_many :products
-
-## productテーブル
-
-|  Column           | Type          | Options                        |
-| ----------------- | -----------   | --------------------------     |
-| price	            | integer	      | null: false                    |
-| shopping_charge	  | integer	      | null: false                    |
-| shopping_area	    | integer	      | null: false                    |
-| shopping_date	    | integer	      | null: false                    |
-| category	        | integer  	    | null: false, foreign_key: true |
-| status            | integer       | null: false                    |
-| user              | references	  | null: false, foreign_key: true |
+|  Column               | Type          | Options                        |
+| -----------------     | -----------   | --------------------------     |
+| name                  | integer       | null: false                    |
+| description           | integer       | null: false                    |
+| price	                | integer	      | null: false                    |
+| shopping_charge_id	  | integer	      | null: false                    |
+| shopping_area_id	    | integer	      | null: false                    |
+| shopping_date_id	    | integer	      | null: false                    |
+| category_id	          | integer  	    | null: false, foreign_key: true |
+| status_id             | integer       | null: false                    |
+| user                  | references	  | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user 
-- belongs_to :category 
 - belongs_to :brand 
-- has_many :images 
 - has_many :comments
-- has_many :purchases
+- has_one :purchase
 
-## imageテーブル
-
-|  Column             | Type        | Options                        |
-| -----------------   | ----------- | -----------------------        |
-| image	              | text  	    | null: false                    |
-| product_id	        | integer	    | null: false, foreign_key: true |
-
-### Association
-- belongs_to :product
-
-## brandテーブル
+## brandsテーブル
 
 |  Column           | Type        | Options        |
 | ----------------- | ----------- | -------------- |
