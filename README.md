@@ -14,7 +14,7 @@
 ### Association
 - has_many   : products
 - has_many   : comments
-- belongs_to : purchases
+- has_many : purchases
 
 ## addressesテーブル
 
@@ -78,7 +78,7 @@
 |  Column               | Type        | Options                        |
 | -----------------     | ----------- | -----------------------        |
 | user	                | references  | null: false, foreign_key: true |
-| category              | references	| null: false, foreign_key: true |
+| product              | references	| null: false, foreign_key: true |
 
 ### Association
 - belongs_to :product
