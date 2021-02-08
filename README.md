@@ -5,6 +5,7 @@
 |nickname	          | string	      | null: false    |
 |email	            | string	      | null: false, foreign_key: true    |
 |password           |	string	      | null: false    |
+|encrypted_password | string        | null: false    |
 |family_name	      | string	      | null: false    |
 |first_name	        | string	      | null: false    |
 |family_name_kana	  | string	      | null: false    |
@@ -22,15 +23,15 @@
 
 |  Column           | Type        | Options                        |
 | ----------------- | ----------- |  --------------                |
-| user_id           |	references  | null: false, foreign_key: true |
-| prefecture	      | string	    | null: false                    |
+| purchase          |	references  | null: false, foreign_key: true |
+| prefecture_id	    | integer	    | null: false                    |
 | city	            | string	    | null: false                    |
 | address           |	string	    | null: false                    |
-| building_name     |	string	    | null: false                    |
-| phone_number	    | integer     | null: false                    |
+| building_name     |	string	    |                    |
+| phone_number	    | string      | null: false                    |
 
 ### Association
-- belongs_to : user
+- belongs_to : purchase
 
 ## commentsテーブル
 
@@ -43,20 +44,6 @@
 - belongs_to : user
 - belongs_to : product
 
-
-## cardテーブル
-
-|  Column           | Type        | Options                        |
-| ----------------- | ----------- | ----------------------------   |
-| user_id	          | integer	    | null: false, foreign_key: true |
-| card_number	      | integer	    | null: false                    |
-| year              | integer	    | null: false                    |
-| month             | integer	    | null: false                    |
-| security_number   | integer	    | null: false                    |
-
-
-### Association
-- belongs_to : user
 
 ## categoryテーブル
 
@@ -73,12 +60,12 @@
 |  Column           | Type          | Options                        |
 | ----------------- | -----------   | --------------------------     |
 | price	            | integer	      | null: false                    |
-| shopping_charge	  | string	      | null: false                    |
-| shopping_area	    | string	      | null: false                    |
-| shopping_date	    | string	      | null: false                    |
-| category_id	      | references  	| null: false, foreign_key: true |
-| brand_id	        | references	  | null: false, foreign_key: true |
-| user_id	          | references	  | null: false, foreign_key: true |
+| shopping_charge	  | integer	      | null: false                    |
+| shopping_area	    | integer	      | null: false                    |
+| shopping_date	    | integer	      | null: false                    |
+| category	        | integer  	    | null: false, foreign_key: true |
+| status            | integer       | null: false                    |
+| user              | references	  | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user 
@@ -111,8 +98,8 @@
 
 |  Column               | Type        | Options                        |
 | -----------------     | ----------- | -----------------------        |
-| user_id	              | references  | null: false, foreign_key: true |
-| category_id	          | references	| null: false, foreign_key: true |
+| user	                | references  | null: false, foreign_key: true |
+| category              | references	| null: false, foreign_key: true |
 
 ### Association
 - belongs_to :product
