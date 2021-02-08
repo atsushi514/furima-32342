@@ -48,8 +48,8 @@
 
 |  Column               | Type          | Options                        |
 | -----------------     | -----------   | --------------------------     |
-| name                  | integer       | null: false                    |
-| description           | text       nnn| null: false                    |
+| name                  | string       | null: false                    |
+| description           | text          | null: false                    |
 | price	                | integer	      | null: false                    |
 | shopping_charge_id	  | integer	      | null: false                    |
 | shopping_area_id	    | integer	      | null: false                    |
