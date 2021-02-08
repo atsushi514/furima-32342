@@ -49,7 +49,7 @@
 |  Column               | Type          | Options                        |
 | -----------------     | -----------   | --------------------------     |
 | name                  | integer       | null: false                    |
-| description           | integer       | null: false                    |
+| description           | text       | null: false                    |
 | price	                | integer	      | null: false                    |
 | shopping_charge_id	  | integer	      | null: false                    |
 | shopping_area_id	    | integer	      | null: false                    |
@@ -83,3 +83,4 @@
 ### Association
 - belongs_to :product
 - belongs_to :user
+- has_one :address
