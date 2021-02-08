@@ -49,12 +49,12 @@
 |  Column               | Type          | Options                        |
 | -----------------     | -----------   | --------------------------     |
 | name                  | integer       | null: false                    |
-| description           | text       | null: false                    |
+| description           | text       nnn| null: false                    |
 | price	                | integer	      | null: false                    |
 | shopping_charge_id	  | integer	      | null: false                    |
 | shopping_area_id	    | integer	      | null: false                    |
 | shopping_date_id	    | integer	      | null: false                    |
-| category_id	          | integer  	    | null: false, foreign_key: true |
+| category_id	          | integer  	    | null: false,                   |
 | status_id             | integer       | null: false                    |
 | user                  | references	  | null: false, foreign_key: true |
 
