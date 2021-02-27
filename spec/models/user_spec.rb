@@ -61,7 +61,7 @@ end
     end
 
     it "パスワードは、6文字以上での入力が必須であること" do
-      @user.password = '12345'
+      @user.password = 'a1234'
       @user.valid?
       expect(@user.errors.full_messages).to include "Password is too short (minimum is 6 characters)"
     end
@@ -114,24 +114,24 @@ end
       @user.email = "sample.com"
       @user.valid?
       expect(@user.errors.full_messages).to include "Email is invalid"
-  end
+    end
 
-  it "passwordは半角英語のみでは登録できない" do
-    @user.password = "aaaaaa"
-    @user.valid?
-    expect(@user.errors.full_messages).to include "Password Input Password Include both letters and numbers."
-  end
+    it "passwordは半角英語のみでは登録できない" do
+      @user.password = "aaaaaa"
+      @user.valid?
+      expect(@user.errors.full_messages).to include "Password Input Password Include both letters and numbers."
+    end
 
-  it "passwordは半角数字のみでは登録できない" do
-    @user.password = "000000"
-    @user.valid?
-    expect(@user.errors.full_messages).to include "Password Input Password Include both letters and numbers."
-  end
+    it "passwordは半角数字のみでは登録できない" do
+      @user.password = "000000"
+      @user.valid?
+      expect(@user.errors.full_messages).to include "Password Input Password Include both letters and numbers."
+    end
 
-  it "passwordは全角では登録できないこと" do
-    @user.password = "hhh０００"
-    @user.valid?
-    expect(@user.errors.full_messages).to include "Password Input Password Include both letters and numbers."
-  end
-  end
+    it "passwordは全角では登録できないこと" do
+      @user.password = "hhh０００"
+      @user.valid?
+      expect(@user.errors.full_messages).to include "Password Input Password Include both letters and numbers."
+    end
+   end
   end
