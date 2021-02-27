@@ -6,6 +6,12 @@ RSpec.describe User, type: :model do
 end
 
   describe 'ユーザー新規登録' do
+    context '新規登録できる時' do
+    it "全てのカラムが揃っていれば登録できる" do
+      expect(@user).to be_valid
+    end
+   end
+    context '新規登録ができない時' do
     it "family_nameがない場合は登録できない" do
       @user.family_name = ''
       @user.valid?
@@ -135,3 +141,4 @@ end
     end
    end
   end
+end
