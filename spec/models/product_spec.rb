@@ -60,13 +60,13 @@ end
     expect(@product.errors.full_messages).to include "Price can't be blank"
   end
   
-  it " descriptionが1000文字以上であれば登録できないこと " do
+  it "descriptionが1000文字以上であれば登録できないこと " do
     @product.description = "a"*1001
     @product.valid?
     expect(@product.errors.full_messages).to include "Description is too long (maximum is 1000 characters)"
   end
 
-  it " nameが40文字以上であれば登録できないこと " do
+  it "nameが40文字以上であれば登録できないこと " do
     @product.name = "a"*41
     @product.valid?
     expect(@product.errors.full_messages).to include "Name is too long (maximum is 40 characters)"
@@ -84,30 +84,53 @@ end
     expect(@product.errors.full_messages).to include "Price is not a number"
   end
 
-  it "idに1が選択されている場合出品できない" do
-  @product.shopping_area_id = 1
+  it "shopping_area_idに1が選択されている場合出品できない" do
+   @product.shopping_area_id = 1
     @product.valid?
     expect(@product.errors.full_messages).to include "Shopping area must be other than 1"
   end
-  
+
+  it "shooping_date_idに1が選択されている場合出品できない" do
+    @product.shopping_date_id = 1
+      @product.valid?
+      expect(@product.errors.full_messages).to include "Shopping date must be other than 1"
+  end
+
+  it "shooping_charge_idに1が選択されている場合出品できない" do
+    @product.shopping_charge_id = 1
+      @product.valid?
+       expect(@product.errors.full_messages).to include "Shopping charge must be other than 1"
+  end
+
+  it "status_idに1が選択されている場合出品できない" do
+    @product.status_id = 1
+      @product.valid?
+        expect(@product.errors.full_messages).to include "Status must be other than 1"
+  end
+
+  it "category_idに1が選択されている場合出品できない" do
+      @product.category_id = 1
+        @product.valid?
+          expect(@product.errors.full_messages).to include "Category must be other than 1"
+  end
+
   it "priceが10_000_000円以上では出品できない" do
-  @product.price = 10000000
-   @product.valid?
-   expect(@product.errors.full_messages).to include "Price must be less than 10000000"
- end
+    @product.price = 10000000
+     @product.valid?
+      expect(@product.errors.full_messages).to include "Price must be less than 10000000"
+  end
 
- it "priceが半角英数字混合では出品できない" do
-  @product.price = "100a"
-   @product.valid?
-   expect(@product.errors.full_messages).to include "Price is not a number"
- end
+  it "priceが半角英数字混合では出品できない" do
+    @product.price = "100a"
+     @product.valid?
+      expect(@product.errors.full_messages).to include "Price is not a number"
+  end
 
- it "priceが半角英字のみでは出品できない" do
-  @product.price = "aaaa"
-   @product.valid?
-   expect(@product.errors.full_messages).to include "Price is not a number"
+  it "priceが半角英字のみでは出品できない" do
+    @product.price = "aaaa"
+     @product.valid?
+      expect(@product.errors.full_messages).to include "Price is not a number"
+  end
  end
-
-end
-end
+ end
 end
