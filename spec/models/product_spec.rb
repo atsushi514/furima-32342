@@ -73,7 +73,7 @@ end
   end
 
   it "price(値段)が300以下であれば登録できないこと " do
-    @product.price = "200 "
+    @product.price = 200
     @product.valid?
     expect(@product.errors.full_messages).to include "Price must be greater than or equal to 300"
   end
@@ -83,6 +83,31 @@ end
     @product.valid?
     expect(@product.errors.full_messages).to include "Price is not a number"
   end
+
+  it "idに1が選択されている場合出品できない" do
+  @product.shopping_area_id = 1
+    @product.valid?
+    expect(@product.errors.full_messages).to include "Shopping area must be other than 1"
+  end
+  
+  it "priceが10_000_000円以上では出品できない" do
+  @product.price = 10000000
+   @product.valid?
+   expect(@product.errors.full_messages).to include "Price must be less than 10000000"
  end
+
+ it "priceが半角英数字混合では出品できない" do
+  @product.price = "100a"
+   @product.valid?
+   expect(@product.errors.full_messages).to include "Price is not a number"
+ end
+
+ it "priceが半角英字のみでは出品できない" do
+  @product.price = "aaaa"
+   @product.valid?
+   expect(@product.errors.full_messages).to include "Price is not a number"
+ end
+
+end
 end
 end
