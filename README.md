@@ -14,7 +14,7 @@
 ### Association
 - has_many   : products
 - has_many   : comments
-- has_many : purchases
+- has_many : orders
 
 ## addressesテーブル
 
@@ -25,11 +25,12 @@
 | city	            | string	    | null: false                    |
 | address           |	string	    | null: false                    |
 | building_name     |	string	    |                    |
+
 | phone_number	    | string      | null: false                    |
 | post_number       | string      | null: false
 
 ### Association
-- belongs_to : purchase
+- belongs_to : order
 
 ## commentsテーブル
 
@@ -62,7 +63,7 @@
 - belongs_to :user 
 - belongs_to :brand 
 - has_many :comments
-- has_one :purchase
+- has_one :order
 
 ## brandsテーブル
 
@@ -73,12 +74,12 @@
 ### Association
 - has_many :products
 
-## purchasesテーブル
+## ordersテーブル
 
-|  Column               | Type        | Options                        |
-| -----------------     | ----------- | -----------------------        |
-| user	                | references  | null: false, foreign_key: true |
-| product              | references	| null: false, foreign_key: true |
+|  Column          | Type        | Options                        |
+| -----------------| ----------- |--------------------            |
+| user	           | references  | null: false, foreign_key: true |
+| product          | references	 | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :product
