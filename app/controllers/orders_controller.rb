@@ -6,7 +6,10 @@ class OrdersController < ApplicationController
 
   def index
     @order_address = OrderAddress.new
+    if current_user == @product.user
+      redirect_to root_path
   end
+end
 
   def create
     @order_address = OrderAddress.new(order_params)
