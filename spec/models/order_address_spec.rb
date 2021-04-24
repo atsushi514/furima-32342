@@ -47,8 +47,20 @@ it 'tokenが空だと保存できないこと' do
   expect(@order_address.errors.full_messages).to include "Token can't be blank"
 end
 
+it 'user_idが空だと保存できないこと' do
+  @order_address.user_id = ''
+  @order_address.valid?
+  expect(@order_address.errors.full_messages).to include "User can't be blank"
+end
+
+it 'product_idが空だと保存できないこと' do
+  @order_address.product_id = ''
+  @order_address.valid?
+  expect(@order_address.errors.full_messages).to include "Product can't be blank"
+end
+
 it 'prefecture_idに1が選択されている場合保存できないこと' do
-  @order_address.prefecture_id = '1'
+  @order_address.prefecture_id = 1
   @order_address.valid?
   expect(@order_address.errors.full_messages).to include "Prefecture must be other than 1"
 end

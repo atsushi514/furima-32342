@@ -9,6 +9,8 @@ class OrderAddress
     validates :prefecture_id, numericality: { other_than: 1}
     validates :phone_number,length: {maximum:11 },format: {with: /\A\d{10}\z|\A\d{11}\z/ , message: "is invalid."}
     validates :token
+    validates :user_id
+    validates :product_id
   end
 
 

@@ -1,14 +1,11 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user! ,only: [:index,:create,]
-  before_action :set_product, only: [:index, :create,]
+  before_action :authenticate_user! ,only: [:index,:create]
+  before_action :set_product, only: [:index, :create]
   before_action :user_product, only:[:index,:create]
-  before_action :sold_out_item, only: [:index,:show]
+  before_action :sold_out_item, only: [:index,:create]
 
   def index
     @order_address = OrderAddress.new
-    if current_user == @product.user
-      redirect_to root_path
-  end
 end
 
   def create
@@ -40,7 +37,7 @@ end
     @product = Product.find(params[:product_id])
 end
 def user_product
-  redirect_to root_path unless @product.user_id == @product.user_id
+  redirect_to root_path if current_user == @product.user
 end
 
 def sold_out_item
