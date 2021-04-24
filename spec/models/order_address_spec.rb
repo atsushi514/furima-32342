@@ -2,10 +2,15 @@ require 'rails_helper'
 
 RSpec.describe OrderAddress, type: :model do
   before do
-    @order_address = FactoryBot.build(:order_address)
+    product = FactoryBot.create(:product)
+    user = FactoryBot.create(:user)
+    @order_address = FactoryBot.build(:order_address,user_id: user.id, product_id: product.id)
+    sleep(1)
 end
+
 describe '購入内容確認' do
   context '商品購入がうまくいく時' do
+
 it 'building_nameが空でも保存できること' do
   @order_address.building_name = ''
   expect(@order_address).to be_valid
@@ -13,14 +18,15 @@ end
 
 it 'すべての値が正しく入力されていれば保存できること' do
   expect(@order_address).to be_valid
+ end
 end
 
-end
 context '商品購入がうまくいかない時' do
+
   it 'post_numberが空だと保存できないこと' do
-    @order_address.post_number = ''
-    @order_address.valid?
-    expect(@order_address.errors.full_messages).to include "Post number can't be blank"
+   @order_address.post_number = ''
+   @order_address.valid?
+   expect(@order_address.errors.full_messages).to include "Post number can't be blank"
 end
 
 it 'cityが空だと保存できないこと' do
@@ -83,8 +89,11 @@ it 'phone_numberは11桁以内でないと保存できないこと' do
   expect(@order_address.errors.full_messages).to include "Phone number is too long (maximum is 11 characters)"
 end
 
-
-
+it 'phone_numberは英数字混合だと保存できないこと' do
+  @order_address.phone_number = 'a0901122000'
+  @order_address.valid?
+  expect(@order_address.errors.full_messages).to include "Phone number is invalid."
 end
-end
+ end
+ end
 end
